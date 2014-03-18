@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/icon64.png</file>
+        <file>icons/toxlogo.png</file>
+        <file>icons/search.png</file>
+        <file>icons/esf-clear-hover.png</file>
+        <file>icons/esf-clear-active.png</file>
+        <file>icons/esf-border.png</file>
+        <file>icons/clear.png</file>
+        <file>icons/pause.png</file>
+        <file>icons/info.png</file>
+        <file>icons/stop.png</file>
+        <file>icons/remove.png</file>
+    </qresource>
+</RCC>
