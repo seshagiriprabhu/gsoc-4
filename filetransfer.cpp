@@ -94,18 +94,18 @@ filetransfer::filetransfer(QWidget *parent) :
 
 
     int fileHigh = 1000000, fileLow = 1;
-    int speedRand, statusRand;
+    int statusRand;
     int fileRandSize, randValue;
     int statusHigh = 4, High = 100;
-    int statusLow = 1, Low = 10;
+    int statusLow = 1, Low = 0;
     QString status, fileSize, speed;
 
     ui->fileView->setHeaderLabels(QStringList() << "FileName" << "Progress" << "FileSize" << "Status" << "FriendID" << "Speed");
     for (int i = 0; i < 50; ++i)
     {
-        speedRand = randValue = (qrand() % ((High + 1) - Low) + Low);
+        randValue = (qrand() % ((High + 1) - Low) + Low);
         statusRand = (qrand() % ((statusHigh + 1) - statusLow) + statusLow);
-        speed = QString::number(speedRand);
+        speed = QString::number(randValue);
         speed += " Kb/s";
         fileRandSize = (qrand() % ((fileHigh + 1) - fileLow) + fileLow);
         if ((fileRandSize/1024) > 1 && (fileRandSize/1024) < 1024) {
@@ -121,9 +121,9 @@ filetransfer::filetransfer(QWidget *parent) :
 
         if (randValue == 100) {
             if (statusRand == 1) {
-                status = "Received";
+                status = "Received Completed";
             } else {
-                status = "Send";
+                status = "Send Completed";
             }
         } else {
             if (statusRand == 1) {
