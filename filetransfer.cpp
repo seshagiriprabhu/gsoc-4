@@ -10,13 +10,8 @@
 
 void filetransfer::onFileTransferContextMenuRequested(const QPoint &pos)
 {
-
     QPoint globalPos = ui->fileView->viewport()->mapToGlobal(pos);
     globalPos.setX(globalPos.x() + 1);
-    /*QModelIndexList selectedIndexes = ui->fileView->selectedItems();
-    if (selectedIndexes.size() != 1) {
-        return;
-    }*/
     fileTransferContextMenu->exec(globalPos);
 }
 
@@ -53,10 +48,10 @@ filetransfer::filetransfer(QWidget *parent) :
     QAction* stopAction = new QAction(QIcon(":/icons/stop.png"), "Stop", this);
     connect(stopAction, &QAction::triggered, this, &filetransfer::onStopActionTriggered);
 
-    QAction* propertiesAction = new QAction(QIcon(":/icons/info.png"), "Stop", this);
+    QAction* propertiesAction = new QAction(QIcon(":/icons/info.png"), "Properties", this);
     connect(propertiesAction, &QAction::triggered, this, &filetransfer::onPropertiesActionTriggered);
 
-    QAction* removeAction = new QAction(QIcon(":/icons/remove.png"), "Properties", this);
+    QAction* removeAction = new QAction(QIcon(":/icons/remove.png"), "Remove", this);
     connect(removeAction, &QAction::triggered, this, &filetransfer::onRemoveActionTriggered);
 
     fileTransferContextMenu = new QMenu(this);
@@ -97,24 +92,18 @@ filetransfer::filetransfer(QWidget *parent) :
     ui->fileView->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->fileView, &QTreeWidget::customContextMenuRequested, this, &filetransfer::onFileTransferContextMenuRequested);
 
-    int High = 100;
-    int Low = 10;
-    int fileHigh = 1000000;
-    int fileLow = 1;
-    int randValue;
-    int fileRandSize;
-    int speedRand;
-    int statusHigh = 4;
-    int statusLow = 1;
-    int statusRand;
-    QString status;
-    QString fileSize;
-    QString speed;
+
+    int fileHigh = 1000000, fileLow = 1;
+    int speedRand, statusRand;
+    int fileRandSize, randValue;
+    int statusHigh = 4, High = 100;
+    int statusLow = 1, Low = 10;
+    QString status, fileSize, speed;
+
     ui->fileView->setHeaderLabels(QStringList() << "FileName" << "Progress" << "FileSize" << "Status" << "FriendID" << "Speed");
     for (int i = 0; i < 50; ++i)
     {
-        randValue = (qrand() % ((High + 1) - Low) + Low);
-        speedRand = (qrand() % ((High + 1) - Low) + Low);
+        speedRand = randValue = (qrand() % ((High + 1) - Low) + Low);
         statusRand = (qrand() % ((statusHigh + 1) - statusLow) + statusLow);
         speed = QString::number(speedRand);
         speed += " Kb/s";
